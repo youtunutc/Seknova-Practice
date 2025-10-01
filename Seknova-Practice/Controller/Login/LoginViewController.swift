@@ -6,6 +6,8 @@
 //
 import UIKit
 class LoginViewController: UIViewController {
+
+    
     
     // MARK: - IBOutlet
     
@@ -31,15 +33,30 @@ class LoginViewController: UIViewController {
         SignUpVC.delegate = self
         self.navigationController?.pushViewController(SignUpVC, animated: true)
             }
+    
+    @IBAction func btnForgetTapped(_ sender: Any) {
+    let ForgetVC = ForgetViewController(nibName: "ForgetViewController", bundle: nil)
+        ForgetVC.delegate = self
+        self.navigationController?.pushViewController(ForgetVC, animated: true)
+        
+        
+    }
+    
+    
+    
+    
 }
 
 // MARK: - Extensions
 extension LoginViewController: SignUpDelegate {
     func didTappedSignUp() {  // 移除參數
         print("註冊按鈕被點擊")
-        
         }
     }
 
-
+extension LoginViewController: ForgetDelegate {
+    func didTappedForget() {
+        print("忘記密碼按鈕被點擊")
+    }
+}
 // MARK: - Protocol

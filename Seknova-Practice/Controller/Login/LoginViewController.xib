@@ -90,6 +90,9 @@
                             <color key="strokeColor" red="0.69197839500000002" green="0.161444217" blue="0.17252144220000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         </backgroundConfiguration>
                     </buttonConfiguration>
+                    <connections>
+                        <action selector="btnForgetTapped:" destination="-1" eventType="touchUpInside" id="cM5-HL-i33"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LZS-AG-Q7W">
                     <rect key="frame" x="206" y="710" width="140" height="45"/>

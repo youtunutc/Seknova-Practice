@@ -9,21 +9,28 @@ import UIKit
 
 class SignUpViewController: UIViewController {
 
+    // MARK: - IBOutlet
+    
+    
+    // MARK: - Variables
+    weak var delegate: SignUpDelegate?
+    
+    // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
     }
+    
+    // MARK: - UI Settings
+    
+    
+    // MARK: - IBAction
+    
+}
+// MARK: - Extensions
 
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+// MARK: - Protocol
+protocol SignUpDelegate: AnyObject {
+    func didTappedSignUp() // 移除參數
 }

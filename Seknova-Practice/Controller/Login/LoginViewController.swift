@@ -14,7 +14,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var btnApple: UIButton!
     @IBOutlet weak var btnGoogle: UIButton!
     @IBOutlet weak var btnForget: UIButton!
-    @IBOutlet weak var btnRegisted: UIButton!
+    @IBOutlet weak var btnSignUp: UIButton!
     
     // MARK: - Variables
     
@@ -26,15 +26,20 @@ class LoginViewController: UIViewController {
     
     
     // MARK: - IBAction
-    
+    @IBAction func btnSignUpTapped(_ sender: UIButton) {
+        let SignUpVC = SignUpViewController(nibName: "SignUpViewController", bundle: nil)
+        SignUpVC.delegate = self
+        self.navigationController?.pushViewController(SignUpVC, animated: true)
+            }
 }
-    // MARK: - Extensions
-    extension LoginViewController: RegisterDelegate {
-        func didTappedRegisterBtn() {
-            print("didTappedRegisterBtn called")
+
+// MARK: - Extensions
+extension LoginViewController: SignUpDelegate {
+    func didTappedSignUp() {  // 移除參數
+        print("註冊按鈕被點擊")
+        
         }
     }
 
-    // MARK: - Protocol
 
-
+// MARK: - Protocol

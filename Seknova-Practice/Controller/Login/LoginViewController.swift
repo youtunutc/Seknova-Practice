@@ -17,16 +17,29 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var btnGoogle: UIButton!
     @IBOutlet weak var btnForget: UIButton!
     @IBOutlet weak var btnSignUp: UIButton!
+    @IBOutlet weak var txfUserId: UITextField!
+    @IBOutlet weak var txfPassword: UITextField!
     
     // MARK: - Variables
     
     
     // MARK: - LifeCycle
-    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setUI()
+        setupNavigationBar()
+    }
     
     // MARK: - UI Settings
+    func setUI() {
+    }
     
-    
+    func setupNavigationBar() {
+        navigationItem.title = "Login"
+        let appearance = UINavigationBarAppearance()
+        appearance.backgroundColor = Color.mainRed
+
+    }
     // MARK: - IBAction
     @IBAction func btnSignUpTapped(_ sender: UIButton) {
         let SignUpVC = SignUpViewController(nibName: "SignUpViewController", bundle: nil)

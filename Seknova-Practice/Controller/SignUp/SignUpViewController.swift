@@ -72,8 +72,8 @@ class SignUpViewController: UIViewController {
     
     @IBAction func signUpButtonTapped(_ sender: Any) {
         if validateInputs() {
-             let ActiveAccountVC = ActiveAccountViewController(nibName: "ActiveAccountViewController", bundle: nil)
-             self.navigationController?.pushViewController(ActiveAccountVC, animated: true)
+             let ActivatedAccountVC = ActivatedAccountViewController(nibName: "ActivatedAccountViewController", bundle: nil)
+             self.navigationController?.pushViewController(ActivatedAccountVC, animated: true)
          }
 
     }
@@ -87,8 +87,8 @@ extension SignUpViewController: PrivateAgreeDelegate {
     }
 }
 
-extension SignUpViewController: ActiveAccountDelegate {
-    func didTappedActiveAccount() {
+extension SignUpViewController: ActivatedAccountDelegate {
+    func didTappedActivatedAccount() {
         print("啟動帳號被點擊")
     }
 }

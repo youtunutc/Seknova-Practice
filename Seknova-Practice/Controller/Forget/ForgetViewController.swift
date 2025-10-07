@@ -12,6 +12,8 @@ class ForgetViewController: UIViewController {
     // MARK: - IBOutlet
     
     
+    @IBOutlet weak var btnSent: UIButton!
+    
     // MARK: - Variables
     weak var delegate: ForgetDelegate?
     
@@ -26,6 +28,10 @@ class ForgetViewController: UIViewController {
     
     // MARK: - IBAction
     
+    @IBAction func sentButtonTapped(_ sender: Any) {
+        let ResetPwdVC = ResetPwdViewController(nibName: "ResetPwdViewController", bundle: nil)
+        self.navigationController?.pushViewController(ResetPwdVC, animated: true)
+    }
 }
 // MARK: - Extensions
 

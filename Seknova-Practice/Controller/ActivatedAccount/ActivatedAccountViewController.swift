@@ -12,6 +12,8 @@ class ActivatedAccountViewController: UIViewController {
     // MARK: - IBOutlet
     
     
+    
+    @IBOutlet weak var btnNext: UIButton!
     // MARK: - Variables
     weak var delegate: ActivatedAccountDelegate?
     
@@ -26,6 +28,22 @@ class ActivatedAccountViewController: UIViewController {
     
     // MARK: - IBAction
     
+    @IBAction func nextButtonTapped(_ sender: Any) {
+        
+                if let navigationController = self.navigationController {
+                    navigationController.popToRootViewController(animated: true)
+                    if let loginVC = navigationController.viewControllers.first as? LoginViewController {
+                        let defaults = UserDefaults.standard
+                        if let savedEmail = defaults.value(forKey: .userEmail) as? String,
+                           let savedPassword = defaults.value(forKey: .userPassword) as? String {
+                            DispatchQueue.main.async {
+                                loginVC.txfUserId.text = savedEmail
+                                loginVC.txfPassword.text = savedPassword
+                            }
+                        }
+                    }
+                }
+    }
 }
 // MARK: - Extensions
 

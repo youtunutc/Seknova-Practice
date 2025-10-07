@@ -30,6 +30,14 @@ class LoginViewController: UIViewController {
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+            super.viewWillAppear(animated)
+            if let defaults = UserDefaults.standard.value(forKey: .userEmail) as? String {
+                txfUserId.text = defaults
+                txfPassword.text = UserDefaults.standard.value(forKey: .userPassword) as? String
+            }
+        }
+    
     // MARK: - UI Settings
     func setUI() {
         navigationItem.title = "Login"

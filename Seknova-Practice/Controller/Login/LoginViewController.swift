@@ -27,19 +27,16 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()
-        setupNavigationBar()
+        
     }
     
     // MARK: - UI Settings
     func setUI() {
+        navigationItem.title = "Login"
     }
     
-    func setupNavigationBar() {
-        navigationItem.title = "Login"
-        let appearance = UINavigationBarAppearance()
-        appearance.backgroundColor = Color.mainRed
 
-    }
+    
     // MARK: - IBAction
     @IBAction func btnSignUpTapped(_ sender: UIButton) {
         let SignUpVC = SignUpViewController(nibName: "SignUpViewController", bundle: nil)

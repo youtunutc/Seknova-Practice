@@ -13,6 +13,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+        NavigationBar.setupNavigationBar()
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let rootVC = LoginViewController(nibName: "LoginViewController", bundle: nil)
         let navigationController = UINavigationController(rootViewController: rootVC)
@@ -20,6 +21,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.windowScene = windowScene
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
+
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

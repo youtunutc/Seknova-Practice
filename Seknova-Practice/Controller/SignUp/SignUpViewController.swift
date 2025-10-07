@@ -43,10 +43,11 @@ class SignUpViewController: UIViewController {
         
         
         btnTerms.setTitle("條件與條款", for: .normal)
-        btnTerms.setTitleColor(.systemBlue, for: .normal)
+        btnTerms.setTitleColor(Color.signUpBlue, for: .normal)
         
         lbCountry.text = "Taiwan(台灣)"
         
+        navigationItem.title = "Register"
     }
         
     
@@ -70,8 +71,11 @@ class SignUpViewController: UIViewController {
     }
     
     @IBAction func signUpButtonTapped(_ sender: Any) {
-        let ActiveAccountVC = ActiveAccountViewController(nibName: "ActiveAccountViewController", bundle: nil)
-        self.navigationController?.pushViewController(ActiveAccountVC, animated: true)
+        if validateInputs() {
+             let ActiveAccountVC = ActiveAccountViewController(nibName: "ActiveAccountViewController", bundle: nil)
+             self.navigationController?.pushViewController(ActiveAccountVC, animated: true)
+         }
+
     }
     
     
@@ -119,7 +123,88 @@ extension SignUpViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     }
 }
 
+extension SignUpViewController {
+    
+    private func saveUserData(email: String, password: String) {
+        let defaults = UserDefaults.standard
+        defaults.setValue(email, forKey: .userEmail)
+        defaults.setValue(password, forKey: .userPassword)
+        defaults.setValue(lbCountry.text, forKey: .userCountry)
+        defaults.synchronize()
+    }
+    
+    private func isValidEmail(_ email: String) -> Bool {
+        let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+        let emailPredicate = NSPredicate(format: "SELF MATCHES %@", emailRegex)
+        return emailPredicate.evaluate(with: email)
+    }
+    
+
+    private func isValidPassword(_ password: String) -> Bool {
+        let passwordRegex = "^(?=.*[a-z])(?=.*[A-Z]).{8,}$"
+        let passwordPredicate = NSPredicate(format: "SELF MATCHES %@", passwordRegex)
+        return passwordPredicate.evaluate(with: password)
+    }
+    
+
+    private func showAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "確定", style: .default))
+        present(alert, animated: true)
+    }
+    
+
+    private func validateInputs() -> Bool {
+
+        guard let email = txfEmail.text, !email.isEmpty,
+              let password = txfPwd.text, !password.isEmpty,
+              let passwordAgain = txfPwdAgain.text, !passwordAgain.isEmpty else {
+            showAlert(title: "錯誤", message: "請填寫所有欄位")
+            return false
+        }
+        
+
+        guard isValidEmail(email) else {
+            showAlert(title: "錯誤", message: "請輸入有效的電子郵件地址")
+            return false
+        }
+        
+
+        guard isValidPassword(password) else {
+            showAlert(title: "錯誤", message: "密碼必須至少8個字元，且包含至少一個大寫和一個小寫字母")
+            return false
+        }
+        
+  
+        guard password == passwordAgain else {
+            showAlert(title: "錯誤", message: "兩次輸入的密碼不相符")
+            return false
+        }
+        saveUserData(email: email, password: password)
+        return true
+    }
+}
+
+extension UserDefaults {
+    enum Keys: String {
+        case userEmail
+        case userPassword
+        case userCountry
+    }
+    
+    func setValue(_ value: Any?, forKey key: Keys) {
+        setValue(value, forKey: key.rawValue)
+    }
+    
+    func value(forKey key: Keys) -> Any? {
+        return value(forKey: key.rawValue)
+    }
+}
+
+
+
+
 // MARK: - Protocol
 protocol SignUpDelegate: AnyObject {
-    func didTappedSignUp() // 移除參數
+    func didTappedSignUp()
 }

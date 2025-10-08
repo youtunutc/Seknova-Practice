@@ -60,6 +60,28 @@ class LoginViewController: UIViewController {
         
     }
     
+    @IBAction func btnLoginTapped(_ sender: Any) {
+         guard let account = txfUserId.text, !account.isEmpty,
+               let password = txfPassword.text, !password.isEmpty else {
+             return
+         }
+
+         let accountKey = "account_\(account)_first_login"
+         let isFirstLogin = !UserDefaults.standard.bool(forKey: accountKey)
+
+         if isFirstLogin {
+             let privateAgreeVC = PrivateAgreeViewController(nibName: "PrivateAgreeViewController", bundle: nil)
+             privateAgreeVC.userAccount = account // 傳遞帳號資訊
+             privateAgreeVC.modalPresentationStyle = .fullScreen
+             present(privateAgreeVC, animated: true)
+         } else {
+             let glycemicIndexVC = GlycemicIndexViewController()
+             let navController = UINavigationController(rootViewController: glycemicIndexVC)
+             navController.modalPresentationStyle = .fullScreen
+             glycemicIndexVC.navigationItem.hidesBackButton = true
+             present(navController, animated: true)
+         }
+    }
     
     
     
@@ -69,8 +91,8 @@ class LoginViewController: UIViewController {
 extension LoginViewController: SignUpDelegate {
     func didTappedSignUp() {  // 移除參數
         print("註冊按鈕被點擊")
-        }
     }
+}
 
 extension LoginViewController: ForgetDelegate {
     func didTappedForget() {

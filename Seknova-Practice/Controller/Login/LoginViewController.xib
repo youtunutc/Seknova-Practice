@@ -45,6 +45,9 @@
                             <color key="strokeColor" red="0.69197839500000002" green="0.161444217" blue="0.17252144220000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         </backgroundConfiguration>
                     </buttonConfiguration>
+                    <connections>
+                        <action selector="btnLoginTapped:" destination="-1" eventType="touchUpInside" id="F9F-Kj-JJD"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U4I-Od-rrB">
                     <rect key="frame" x="46.666666666666657" y="551" width="300" height="45"/>
